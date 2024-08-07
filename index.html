@@ -5,25 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Slider Configuration</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-weight: 100;
+            font-style: normal;
+            background-color: #1e1e1e;
+            color: #f4f4f4;
             margin: 0;
             padding: 20px;
         }
 
         .container {
-            max-width: 400px;
+            max-width: 800px;
             margin: 0 auto;
-            background: #fff;
+            background: #333;
             padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
         }
 
-        h1 {
+        h1 { 
             text-align: center;
-            color: #333;
+            color: #fff;
+            animation: fadeInUp 2s ease-in-out, colorChange 5s infinite alternate;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes colorChange {
+            0% {
+                color: #fff;
+            }
+
+            25% {
+                color: #ff5733;
+            }
+
+            50% {
+                color: #33ff57;
+            }
+
+            75% {
+                color: #3357ff;
+            }
+
+            100% {
+                color: #ff33a6;
+            }
         }
 
         .form-group {
@@ -33,7 +75,7 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            color: #555;
+            color: #bbb;
         }
 
         .form-group input,
@@ -42,12 +84,15 @@
             width: 100%;
             padding: 8px;
             box-sizing: border-box;
-            border: 1px solid #ddd;
+            border: 1px solid #555;
             border-radius: 4px;
+            background: #444;
+            color: #fff;
         }
 
-        .form-group input[type="file"] {
-            padding: 3px;
+        .form-group input[type="color"] {
+            padding: 0;
+            height: 40px;
         }
 
         .form-group button {
@@ -68,14 +113,38 @@
             color: white;
         }
 
-        .form-group button.reset {
-            background-color: #dc3545;
-            color: white;
-        }
-
         .error {
             color: red;
             font-size: 12px;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .flex-item {
+            flex: 1 1 45%;
+        }
+
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            margin: 20px 0;
+            border: 1px solid #555;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .slider-container img {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            transition: left 1s ease;
         }
     </style>
 </head>
@@ -89,11 +158,33 @@
                 <label for="sliderTitle">Slider Title:</label>
                 <input type="text" id="sliderTitle" name="sliderTitle">
             </div>
+
+            <!-- Image Upload Fields -->
             <div class="form-group">
-                <label for="imageUpload">Image Upload (3 mandatory, up to 6):</label>
-                <input type="file" id="imageUpload" name="imageUpload" multiple accept="image/*">
-                <div class="error" id="imageError"></div>
+                <label for="imageUpload1">Image 1 (Mandatory):</label>
+                <input type="file" id="imageUpload1" name="imageUpload1" accept="image/*" required>
             </div>
+            <div class="form-group">
+                <label for="imageUpload2">Image 2 (Mandatory):</label>
+                <input type="file" id="imageUpload2" name="imageUpload2" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="imageUpload3">Image 3 (Mandatory):</label>
+                <input type="file" id="imageUpload3" name="imageUpload3" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="imageUpload4">Image 4 (Optional):</label>
+                <input type="file" id="imageUpload4" name="imageUpload4" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="imageUpload5">Image 5 (Optional):</label>
+                <input type="file" id="imageUpload5" name="imageUpload5" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="imageUpload6">Image 6 (Optional):</label>
+                <input type="file" id="imageUpload6" name="imageUpload6" accept="image/*">
+            </div>
+
             <div class="form-group">
                 <label for="imageAltText">Image Alt Text (comma-separated for each image):</label>
                 <input type="text" id="imageAltText" name="imageAltText">
@@ -277,11 +368,19 @@
                 return;
             }
 
-            const images = document.getElementById('imageUpload').files;
+            const images = [
+                document.getElementById('imageUpload1').files[0],
+                document.getElementById('imageUpload2').files[0],
+                document.getElementById('imageUpload3').files[0],
+                document.getElementById('imageUpload4').files[0],
+                document.getElementById('imageUpload5').files[0],
+                document.getElementById('imageUpload6').files[0]
+            ].filter(Boolean); // Filter out undefined entries
+
             const altTexts = settings.imageAltText.split(',');
 
-            if (images.length < 3 || images.length > 6) {
-                alert('Please upload between 3 and 6 images.');
+            if (images.length < 3) {
+                alert('Please upload at least 3 images.');
                 return;
             }
 
@@ -291,7 +390,7 @@
             slider.style.overflow = 'hidden';
             slider.style.position = 'relative';
 
-            Array.from(images).forEach((image, index) => {
+            images.forEach((image, index) => {
                 const img = document.createElement('img');
                 img.src = URL.createObjectURL(image);
                 img.alt = altTexts[index] || '';
@@ -324,16 +423,6 @@
                 }, settings.slideDuration);
             }
         }
-
-        document.getElementById('imageUpload').addEventListener('change', function () {
-            const imageError = document.getElementById('imageError');
-            const files = this.files;
-            if (files.length < 3 || files.length > 6) {
-                imageError.textContent = 'Please upload between 3 and 6 images.';
-            } else {
-                imageError.textContent = '';
-            }
-        });
     </script>
 </body>
 
