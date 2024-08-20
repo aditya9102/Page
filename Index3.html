@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parental Support Benefits</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-XXDj4mQ2dyy0DMC+IG+dWOnkLROdREdfjYlbIEi/J/SMNSv2S1Jtpqf5kW8kE00X" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+
+        .container-custom {
+            background: linear-gradient(135deg, rgba(255, 215, 235, 0.6), rgba(218, 233, 255, 0.8));
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 15px;
+            overflow: hidden;
+            border: none;
+        }
+
+        .benefit-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .benefit-img {
+            max-height: 200px;
+            object-fit: cover;
+        }
+
+        .btn-custom {
+            background-color: #007bff;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #007bff;
+            color: #fff;
+            margin-top: 40px;
+        }
+
+        .sub-points {
+            margin-top: 10px;
+            padding-left: 15px;
+        }
+
+        .sub-points ul {
+            list-style-type: disc;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .benefit-card {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="container my-4">
+        <h1 class="section-title">Parental Support Benefits</h1>
+        <p class="text-center">Comprehensive benefits designed to support parents in managing both family and work
+            commitments.</p>
+    </header>
+
+    <div class="container container-custom">
+        <div class="row">
+            <!-- First Benefit Card with Sub-Points -->
+            <div class="col-lg-6 col-md-6 mb-4">
+                <div class="card benefit-card">
+                    <img src="https://example.com/image1.jpg" alt="Paid Paternal Leave"
+                        class="card-img-top benefit-img">
+                    <div class="card-body">
+                        <h5 class="card-title">Paid Paternal Leave Policy</h5>
+                        <p class="card-text">We provide fathers with paid paternal leave, allowing them to bond with
+                            their newborns and ease into parenthood without stress.</p>
+                        <div class="sub-points">
+                            <h6>Main Points:</h6>
+                            <ul>
+                                <li>Duration of Leave:
+                                    <ul>
+                                        <li>Standard leave period of 12 weeks.</li>
+                                        <li>Extended leave up to 16 weeks for special cases.</li>
+                                    </ul>
+                                </li>
+                                <li>Eligibility Criteria:
+                                    <ul>
+                                        <li>Minimum 1 year of employment.</li>
+                                        <li>Both full-time and part-time employees eligible.</li>
+                                    </ul>
+                                </li>
+                                <li>Leave Compensation:
+                                    <ul>
+                                        <li>100% salary coverage for the first 8 weeks.</li>
+                                        <li>75% salary coverage for the remaining leave.</li>
+                                    </ul>
+                                </li>
+                                <li>Additional Support:
+                                    <ul>
+                                        <li>Access to counseling services during the leave.</li>
+                                        <li>Flexible return-to-work schedule after the leave ends.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Benefit Card with Sub-Points -->
+            <div class="col-lg-6 col-md-6 mb-4">
+                <div class="card benefit-card">
+                    <img src="https://example.com/image2.jpg" alt="Childcare Work Schedules"
+                        class="card-img-top benefit-img">
+                    <div class="card-body">
+                        <h5 class="card-title">Flexible Childcare Work Schedules</h5>
+                        <p class="card-text">Our flexible work schedules allow parents to manage both their childcare
+                            responsibilities and their professional duties with ease.</p>
+                        <div class="sub-points">
+                            <h6>Main Points:</h6>
+                            <ul>
+                                <li>Flexible Hours:
+                                    <ul>
+                                        <li>Option for early or late shift start times.</li>
+                                        <li>Compressed workweek options available.</li>
+                                    </ul>
+                                </li>
+                                <li>Remote Work Options:
+                                    <ul>
+                                        <li>Work from home 2-3 days a week.</li>
+                                        <li>Full remote work available for specific roles.</li>
+                                    </ul>
+                                </li>
+                                <li>Childcare Support:
+                                    <ul>
+                                        <li>On-site daycare facilities available.</li>
+                                        <li>Childcare vouchers and subsidies for external daycare services.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Third Benefit Card with Sub-Points -->
+            <div class="col-lg-6 col-md-6 mb-4">
+                <div class="card benefit-card">
+                    <img src="https://example.com/image3.jpg" alt="Retirement Benefits"
+                        class="card-img-top benefit-img">
+                    <div class="card-body">
+                        <h5 class="card-title">Retirement Benefits for Parents</h5>
+                        <p class="card-text">Our retirement benefits provide special considerations for parents,
+                            ensuring your future is secure despite any caregiving breaks.</p>
+                        <div class="sub-points">
+                            <h6>Main Points:</h6>
+                            <ul>
+                                <li>Retirement Savings Plans:
+                                    <ul>
+                                        <li>401(k) matching contributions up to 6%.</li>
+                                        <li>Additional contribution options for parents who take caregiving breaks.</li>
+                                    </ul>
+                                </li>
+                                <li>Financial Planning Support:
+                                    <ul>
+                                        <li>Access to financial advisors specialized in family planning.</li>
+                                        <li>Workshops on saving for both retirement and children's education.</li>
+                                    </ul>
+                                </li>
+                                <li>Post-Retirement Benefits:
+                                    <ul>
+                                        <li>Healthcare support post-retirement for both parents and dependents.</li>
+                                        <li>Options for flexible pension withdrawal based on individual needs.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fourth Benefit Card with Sub-Points -->
+            <div class="col-lg-6 col-md-6 mb-4">
+                <div class="card benefit-card">
+                    <img src="https://example.com/image4.jpg" alt="Health Insurance" class="card-img-top benefit-img">
+                    <div class="card-body">
+                        <h5 class="card-title">Comprehensive Health Insurance</h5>
+                        <p class="card-text">We offer health insurance that covers your entire family, ensuring your
+                            health and well-being is protected at all times.</p>
+                        <div class="sub-points">
+                            <h6>Main Points:</h6>
+                            <ul>
+                                <li>Family Coverage:
+                                    <ul>
+                                        <li>100% coverage for preventive care.</li>
+                                        <li>Specialized care for children included in plans.</li>
+                                    </ul>
+                                </li>
+                                <li>Extended Maternity and Paternity Care:
+                                    <ul>
+                                        <li>Comprehensive maternity and postnatal care.</li>
+                                        <li>Paternity health benefits available.</li>
+                                    </ul>
+                                </li>
+                                <li>Mental Health Services:
+                                    <ul>
+                                        <li>Access to family counseling services.</li>
+                                        <li>Therapy sessions covered for both parents and children.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fifth Benefit Card with Sub-Points -->
+            <div class="col-lg-6 col-md-6 mb-4">
+                <div class="card benefit-card">
+                    <img src="https://example.com/image5.jpg" alt="Child Education Support"
+                        class="card-img-top benefit-img">
+                    <div class="card-body">
+                        <h5 class="card-title">Child Education Support</h5>
+                        <p class="card-text">We provide education support for your children, ensuring they have access
+                            to the best learning opportunities.</p>
+                        <div class="sub-points">
+                            <h6>Main Points:</h6>
+                            <ul>
+                                <li>Education Grants:
+                                    <ul>
+                                        <li>Grants for primary and secondary education.</li>
+                                        <li>Scholarship programs for college-bound children.</li>
+                                    </ul>
+                                </li>
+                                <li>Learning Resources:
+                                    <ul>
+                                        <li>Access to online learning platforms and resources.</li>
+                                        <li>After-school tutoring support for all ages.</li>
+                                    </ul>
+                                </li>
+                                <li>Special Needs Education Support:
+                                    <ul>
+                                        <li>Assistance for children with special educational needs.</li>
+                                        <li>Resources and expert guidance for parents with special needs children.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sixth Benefit Card with Sub-Points -->
+            <div class="col-lg-6 col-md-6 mb-4">
+                <div class="card benefit-card">
+                    <img src="https://example.com/image6.jpg" alt="Parental Counseling"
+                        class="card-img-top benefit-img">
+                    <div class="card-body">
+                        <h5 class="card-title">Parental Counseling Services</h5>
+                        <p class="card-text">We offer counseling services to support parents through the challenges of
+                            raising children while managing work-life balance.</p>
+                        <div class="sub-points">
+                            <h6>Main Points:</h6>
+                            <ul>
+                                <li>Counseling Options:
+                                    <ul>
+                                        <li>One-on-one counseling sessions with certified professionals.</li>
+                                        <li>Group counseling sessions for new parents.</li>
+                                    </ul>
+                                </li>
+                                <li>Work-Life Balance Support:
+                                    <ul>
+                                        <li>Guidance on maintaining work-life balance while parenting.</li>
+                                        <li>Workshops on stress management for parents.</li>
+                                    </ul>
+                                </li>
+                                <li>Parental Mental Health:
+                                    <ul>
+                                        <li>Special focus on mental health issues faced by new parents.</li>
+                                        <li>Resources for coping with parental burnout and anxiety.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Parental Support Benefits. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz4fnFO9gybT8gE+1AI6Bium3Nt6KZ6JrL4R8/gN4RwQ1L3i0w1cTN6sv/"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93mFe5Adkpsd2XVV65koYY2KNQqD8hWhlrE6pBB4YhDH6KQ0O3yt55STn0q3Q8"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
