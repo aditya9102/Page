@@ -4,425 +4,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Slider Configuration</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap"
-        rel="stylesheet">
+    <title>Advanced Image Slider</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            font-weight: 100;
-            font-style: normal;
-            background-color: #1e1e1e;
-            color: #f4f4f4;
+            font-family: 'Helvetica Neue', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #333;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            background-color: #fff;
+            padding: 30px;
+
             border-radius: 10px;
-        }
-
-        h1 { 
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            max-width: 100%;
             text-align: center;
-            color: #fff;
-            animation: fadeInUp 2s ease-in-out, colorChange 5s infinite alternate;
         }
 
-        @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
         }
 
-        @keyframes colorChange {
-            0% {
-                color: #fff;
-            }
-
-            25% {
-                color: #ff5733;
-            }
-
-            50% {
-                color: #33ff57;
-            }
-
-            75% {
-                color: #3357ff;
-            }
-
-            100% {
-                color: #ff33a6;
-            }
+        form {
+            margin-bottom: 30px;
         }
 
-        .form-group {
+        .input-group {
             margin-bottom: 15px;
+            text-align: left;
         }
 
-        .form-group label {
+        label {
             display: block;
             margin-bottom: 5px;
-            color: #bbb;
+            font-weight: bold;
         }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
+        input[type="file"] {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
             box-sizing: border-box;
-            border: 1px solid #555;
-            border-radius: 4px;
-            background: #444;
-            color: #fff;
         }
 
-        .form-group input[type="color"] {
-            padding: 0;
-            height: 40px;
-        }
-
-        .form-group button {
+        button {
+            margin-top: 15px;
             padding: 10px 20px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .form-group button.save {
-            background-color: #28a745;
-            color: white;
-        }
-
-        .form-group button.preview {
             background-color: #007bff;
             color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
         }
 
-        .error {
-            color: red;
-            font-size: 12px;
+        button:hover {
+            background-color: #0056b3;
         }
 
-        .flex-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .flex-item {
-            flex: 1 1 45%;
-        }
-
-        .slider-container {
+        .slider {
             position: relative;
-            overflow: hidden;
-            width: 100%;
-            margin: 20px 0;
-            border: 1px solid #555;
-            border-radius: 10px;
+            max-width: 100%;
+            margin: auto;
             display: none;
         }
 
-        .slider-container img {
+        .slides {
+            display: flex;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .slides img {
             width: 100%;
-            height: auto;
+            border-radius: 10px;
+        }
+
+        .prev,
+        .next {
+            cursor: pointer;
             position: absolute;
-            top: 0;
-            left: 100%;
-            transition: left 1s ease;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            button {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Configure Your Image Slider</h1>
-        <form id="sliderConfigForm">
-            <!-- Basic Settings -->
-            <div class="form-group">
-                <label for="sliderTitle">Slider Title:</label>
-                <input type="text" id="sliderTitle" name="sliderTitle">
+        <h1>Create Your Image Slider</h1>
+        <form id="sliderForm">
+            <div class="input-group">
+                <label for="image1">Image 1 (Required):</label>
+                <input type="file" id="image1" name="image1" accept="image/*" required>
             </div>
-
-            <!-- Image Upload Fields -->
-            <div class="form-group">
-                <label for="imageUpload1">Image 1 (Mandatory):</label>
-                <input type="file" id="imageUpload1" name="imageUpload1" accept="image/*" required>
+            <div class="input-group">
+                <label for="image2">Image 2 (Required):</label>
+                <input type="file" id="image2" name="image2" accept="image/*" required>
             </div>
-            <div class="form-group">
-                <label for="imageUpload2">Image 2 (Mandatory):</label>
-                <input type="file" id="imageUpload2" name="imageUpload2" accept="image/*" required>
+            <div class="input-group">
+                <label for="image3">Image 3 (Required):</label>
+                <input type="file" id="image3" name="image3" accept="image/*" required>
             </div>
-            <div class="form-group">
-                <label for="imageUpload3">Image 3 (Mandatory):</label>
-                <input type="file" id="imageUpload3" name="imageUpload3" accept="image/*" required>
+            <div class="input-group">
+                <label for="image4">Image 4 (Required):</label>
+                <input type="file" id="image4" name="image4" accept="image/*" required>
             </div>
-            <div class="form-group">
-                <label for="imageUpload4">Image 4 (Optional):</label>
-                <input type="file" id="imageUpload4" name="imageUpload4" accept="image/*">
+            <div class="input-group">
+                <label for="image5">Image 5 (Required):</label>
+                <input type="file" id="image5" name="image5" accept="image/*" required>
             </div>
-            <div class="form-group">
-                <label for="imageUpload5">Image 5 (Optional):</label>
-                <input type="file" id="imageUpload5" name="imageUpload5" accept="image/*">
+            <div class="input-group">
+                <label for="image6">Image 6 (Optional):</label>
+                <input type="file" id="image6" name="image6" accept="image/*">
             </div>
-            <div class="form-group">
-                <label for="imageUpload6">Image 6 (Optional):</label>
-                <input type="file" id="imageUpload6" name="imageUpload6" accept="image/*">
+            <div class="input-group">
+                <label for="image7">Image 7 (Optional):</label>
+                <input type="file" id="image7" name="image7" accept="image/*">
             </div>
-
-            <div class="form-group">
-                <label for="imageAltText">Image Alt Text (comma-separated for each image):</label>
-                <input type="text" id="imageAltText" name="imageAltText">
-            </div>
-            <div class="form-group">
-                <label for="sliderWidth">Slider Width:</label>
-                <input type="text" id="sliderWidth" name="sliderWidth" placeholder="e.g., 100%, 800px">
-            </div>
-            <div class="form-group">
-                <label for="sliderHeight">Slider Height:</label>
-                <input type="text" id="sliderHeight" name="sliderHeight" placeholder="e.g., 400px">
-            </div>
-            <div class="form-group">
-                <label for="autoSlide">Auto Slide:</label>
-                <select id="autoSlide" name="autoSlide">
-                    <option value="true">Enabled</option>
-                    <option value="false">Disabled</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="slideDuration">Slide Duration (ms):</label>
-                <input type="number" id="slideDuration" name="slideDuration">
-            </div>
-
-            <!-- Navigation Controls -->
-            <div class="form-group">
-                <label for="navigationArrows">Navigation Arrows:</label>
-                <select id="navigationArrows" name="navigationArrows">
-                    <option value="true">Enabled</option>
-                    <option value="false">Disabled</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="arrowStyle">Arrow Style:</label>
-                <input type="text" id="arrowStyle" name="arrowStyle" placeholder="e.g., classic, modern">
-            </div>
-            <div class="form-group">
-                <label for="paginationDots">Pagination Dots:</label>
-                <select id="paginationDots" name="paginationDots">
-                    <option value="true">Enabled</option>
-                    <option value="false">Disabled</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="dotStyle">Dot Style:</label>
-                <input type="text" id="dotStyle" name="dotStyle" placeholder="e.g., circular, square">
-            </div>
-
-            <!-- Transition Effects -->
-            <div class="form-group">
-                <label for="transitionEffect">Transition Effect:</label>
-                <input type="text" id="transitionEffect" name="transitionEffect" placeholder="e.g., fade, slide">
-            </div>
-            <div class="form-group">
-                <label for="transitionSpeed">Transition Speed (ms):</label>
-                <input type="number" id="transitionSpeed" name="transitionSpeed">
-            </div>
-            <div class="form-group">
-                <label for="pauseOnHover">Pause on Hover:</label>
-                <select id="pauseOnHover" name="pauseOnHover">
-                    <option value="true">Enabled</option>
-                    <option value="false">Disabled</option>
-                </select>
-            </div>
-
-            <!-- Advanced Settings -->
-            <div class="form-group">
-                <label for="loopSlides">Loop Slides:</label>
-                <select id="loopSlides" name="loopSlides">
-                    <option value="true">Enabled</option>
-                    <option value="false">Disabled</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="randomStart">Random Start:</label>
-                <select id="randomStart" name="randomStart">
-                    <option value="true">Enabled</option>
-                    <option value="false">Disabled</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="lazyLoad">Lazy Load:</label>
-                <select id="lazyLoad" name="lazyLoad">
-                    <option value="true">Enabled</option>
-                    <option value="false">Disabled</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="keyboardNavigation">Keyboard Navigation:</label>
-                <select id="keyboardNavigation" name="keyboardNavigation">
-                    <option value="true">Enabled</option>
-                    <option value="false">Disabled</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="touchSwipe">Touch Swipe:</label>
-                <select id="touchSwipe" name="touchSwipe">
-                    <option value="true">Enabled</option>
-                    <option value="false">Disabled</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="thumbnailNavigation">Thumbnail Navigation:</label>
-                <select id="thumbnailNavigation" name="thumbnailNavigation">
-                    <option value="true">Enabled</option>
-                    <option value="false">Disabled</option>
-                </select>
-            </div>
-
-            <!-- Styling -->
-            <div class="form-group">
-                <label for="backgroundColor">Background Color:</label>
-                <input type="text" id="backgroundColor" name="backgroundColor" placeholder="e.g., #ffffff">
-            </div>
-            <div class="form-group">
-                <label for="borderStyle">Border Style:</label>
-                <input type="text" id="borderStyle" name="borderStyle" placeholder="e.g., none, solid, dotted">
-            </div>
-            <div class="form-group">
-                <label for="borderColor">Border Color:</label>
-                <input type="text" id="borderColor" name="borderColor" placeholder="e.g., #000000">
-            </div>
-            <div class="form-group">
-                <label for="borderRadius">Border Radius:</label>
-                <input type="text" id="borderRadius" name="borderRadius" placeholder="e.g., 10px">
-            </div>
-            <div class="form-group">
-                <label for="shadowEffect">Shadow Effect:</label>
-                <input type="text" id="shadowEffect" name="shadowEffect"
-                    placeholder="e.g., 0px 4px 10px rgba(0,0,0,0.1)">
-            </div>
-            <div class="form-group">
-                <label for="captionStyle">Caption Style:</label>
-                <textarea id="captionStyle" name="captionStyle" rows="3"
-                    placeholder="e.g., font-size: 14px; color: #333;"></textarea>
-            </div>
-
-            <!-- Additional Options -->
-            <div class="form-group">
-                <label for="customCSS">Custom CSS:</label>
-                <textarea id="customCSS" name="customCSS" rows="3" placeholder="Add custom CSS here"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="seoSettings">SEO Settings:</label>
-                <textarea id="seoSettings" name="seoSettings" rows="3"
-                    placeholder="Add meta tags or descriptions for SEO"></textarea>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="form-group">
-                <button type="button" class="save" onclick="saveSettings()">Save Settings</button>
-                <button type="button" class="preview" onclick="previewSlider()">Preview Slider</button>
-                <button type="reset" class="reset">Reset to Default</button>
-            </div>
+            <button type="button" id="previewButton">Preview Slider</button>
         </form>
 
-        <div id="sliderPreview" style="display: none; margin-top: 20px;">
-            <h2>Slider Preview</h2>
-            <div id="sliderContainer" style="position: relative;"></div>
+        <div class="slider" id="imageSlider">
+            <div class="slides" id="slides">
+                <!-- Images will be inserted here -->
+            </div>
+            <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="next" onclick="changeSlide(1)">&#10095;</button>
         </div>
     </div>
 
     <script>
-        function saveSettings() {
-            const form = document.getElementById('sliderConfigForm');
+        document.getElementById('previewButton').addEventListener('click', function () {
+            const form = document.getElementById('sliderForm');
             const formData = new FormData(form);
-            const settings = {};
-            formData.forEach((value, key) => {
-                settings[key] = value;
-            });
-            localStorage.setItem('sliderSettings', JSON.stringify(settings));
-            alert('Settings saved!');
-        }
+            const images = [];
 
-        function previewSlider() {
-            const sliderContainer = document.getElementById('sliderContainer');
-            sliderContainer.innerHTML = '';
-            const settings = JSON.parse(localStorage.getItem('sliderSettings'));
-            if (!settings) {
-                alert('No settings found! Please save settings first.');
+            for (let i = 1; i <= 7; i++) {
+                const file = formData.get(`image${i}`);
+                if (file) {
+                    images.push(URL.createObjectURL(file));
+                }
+            }
+
+            if (images.length < 5) {
+                alert("Please upload at least 5 images.");
                 return;
             }
 
-            const images = [
-                document.getElementById('imageUpload1').files[0],
-                document.getElementById('imageUpload2').files[0],
-                document.getElementById('imageUpload3').files[0],
-                document.getElementById('imageUpload4').files[0],
-                document.getElementById('imageUpload5').files[0],
-                document.getElementById('imageUpload6').files[0]
-            ].filter(Boolean); // Filter out undefined entries
+            const slidesContainer = document.getElementById('slides');
+            slidesContainer.innerHTML = "";
 
-            const altTexts = settings.imageAltText.split(',');
-
-            if (images.length < 3) {
-                alert('Please upload at least 3 images.');
-                return;
-            }
-
-            const slider = document.createElement('div');
-            slider.style.width = settings.sliderWidth;
-            slider.style.height = settings.sliderHeight;
-            slider.style.overflow = 'hidden';
-            slider.style.position = 'relative';
-
-            images.forEach((image, index) => {
+            images.forEach(src => {
                 const img = document.createElement('img');
-                img.src = URL.createObjectURL(image);
-                img.alt = altTexts[index] || '';
-                img.style.width = '100%';
-                img.style.height = '100%';
-                img.style.position = 'absolute';
-                img.style.left = '100%';
-                img.style.top = '0';
-                img.style.transition = `left ${settings.transitionSpeed}ms ${settings.transitionEffect}`;
-                slider.appendChild(img);
+                img.src = src;
+                slidesContainer.appendChild(img);
             });
 
-            sliderContainer.appendChild(slider);
-            document.getElementById('sliderPreview').style.display = 'block';
+            document.querySelector('.slider').style.display = 'block';
+            showSlides(slideIndex);
+        });
 
-            let currentIndex = 0;
-            function showSlide(index) {
-                const slides = slider.querySelectorAll('img');
-                slides.forEach((slide, i) => {
-                    slide.style.left = i === index ? '0' : '100%';
-                });
-            }
+        let slideIndex = 1;
 
-            showSlide(currentIndex);
-
-            if (settings.autoSlide === 'true') {
-                setInterval(() => {
-                    currentIndex = (currentIndex + 1) % images.length;
-                    showSlide(currentIndex);
-                }, settings.slideDuration);
-            }
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
         }
+
+        function showSlides(n) {
+            const slides = document.querySelectorAll('.slides img');
+            if (n > slides.length) {
+                slideIndex = 1;
+            }
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+            slides.forEach(slide => {
+                slide.style.display = 'none';
+            });
+            slides[slideIndex - 1].style.display = 'block';
+        }
+
     </script>
 </body>
 
