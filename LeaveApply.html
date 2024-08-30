@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f7fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .leave-box {
+            background-color: #bfe3f1;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+        }
+
+        .leave-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            background-color: rgb(121, 158, 238);
+        }
+
+        .leave-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .leave-balance {
+            font-size: 1.2rem;
+            color: #dfe3e6;
+        }
+
+        .modal-content {
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="text-center mb-5">Apply for Leave</h1>
+
+        <div class="row">
+            <!-- Ordinary Leave -->
+            <div class="col-md-6">
+                <div class="leave-box" data-bs-toggle="modal" data-bs-target="#applyLeaveModal"
+                    onclick="setLeaveType('Ordinary Leave')">
+                    <div class="leave-title">Ordinary Leave</div>
+                    <div class="leave-balance">12.5/12.5</div>
+                </div>
+            </div>
+
+            <!-- Casual Leave -->
+            <div class="col-md-6">
+                <div class="leave-box" data-bs-toggle="modal" data-bs-target="#applyLeaveModal"
+                    onclick="setLeaveType('Casual Leave')">
+                    <div class="leave-title">Casual Leave</div>
+                    <div class="leave-balance">5/5</div>
+                </div>
+            </div>
+
+            <!-- Sick Leave -->
+            <div class="col-md-6">
+                <div class="leave-box" data-bs-toggle="modal" data-bs-target="#applyLeaveModal"
+                    onclick="setLeaveType('Sick Leave')">
+                    <div class="leave-title">Sick Leave</div>
+                    <div class="leave-balance">10/10</div>
+                </div>
+            </div>
+
+            <!-- Maternity Leave -->
+            <div class="col-md-6">
+                <div class="leave-box" data-bs-toggle="modal" data-bs-target="#applyLeaveModal"
+                    onclick="setLeaveType('Maternity Leave')">
+                    <div class="leave-title">Maternity Leave</div>
+                    <div class="leave-balance">182/182</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Apply Leave Modal -->
+    <div class="modal fade" id="applyLeaveModal" tabindex="-1" aria-labelledby="applyLeaveModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="applyLeaveModalLabel">Apply for Leave</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="leaveType" class="form-label">Leave Type</label>
+                            <input type="text" class="form-control" id="leaveType" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="approver" class="form-label">Approver</label>
+                            <input type="text" class="form-control" id="approver" value="John Doe" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="duration" class="form-label">Duration</label>
+                            <input type="date" class="form-control" id="startDate" placeholder="From Date">
+                            <input type="date" class="form-control mt-2" id="endDate" placeholder="To Date">
+                        </div>
+                        <div class="mb-3">
+                            <label for="reason" class="form-label">Reason</label>
+                            <textarea class="form-control" id="reason" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="attachment" class="form-label">Attachment</label>
+                            <input type="file" class="form-control" id="attachment">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Apply</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function setLeaveType(leaveType) {
+            document.getElementById('leaveType').value = leaveType;
+        }
+    </script>
+</body>
+
+</html>
