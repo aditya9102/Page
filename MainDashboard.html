@@ -4,261 +4,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Status Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>ABC Dashboard</title>
     <style>
         body {
-            background-color: #2c2f38;
-            color: #ddd;
             font-family: Arial, sans-serif;
+            background-color: #1e1e2f;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
         }
 
-        .dashboard-container {
-            max-width: 1200px;
-            margin: 20px auto;
+        .dashboard {
             padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        h1 {
+            text-align: center;
             margin-bottom: 20px;
         }
 
-        .dashboard-header h2 {
-            margin: 0;
-            font-weight: bold;
-            color: #fff;
+        .components {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
         }
 
-        .filter-group select {
-            padding: 8px 12px;
-            border: 1px solid #444;
-            border-radius: 5px;
-            background-color: #3c4048;
-            color: #ddd;
-        }
-
-        .dashboard-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
+        .component {
+            background-color: #2e2e4e;
             padding: 20px;
             border-radius: 10px;
-            background-color: #3c4048;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            flex: 1;
+            margin: 0 10px;
+            transition: transform 0.3s ease;
         }
 
-        .card h3 {
-            margin-top: 0;
-            font-weight: bold;
-            color: #fff;
+        .component:hover {
+            transform: translateY(-10px);
         }
 
-        .card .stat {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #fff;
+        .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+            display: block;
         }
 
-        .card .stat-change {
+        .split-container {
             display: flex;
-            align-items: center;
-            margin-top: 10px;
-            color: #28a745;
-            font-weight: bold;
+            justify-content: space-between;
+            margin-bottom: 20px;
         }
 
-        .card .stat-change svg {
-            margin-right: 5px;
+        .half-container {
+            width: 48%;
+            background-color: #2e2e4e;
+            padding: 20px;
+            border-radius: 10px;
         }
 
-        .chart-container {
-            margin-top: 20px;
+        .flex-containers {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
         }
 
-        .chart-container h3 {
-            font-weight: bold;
-            color: #fff;
+        .container {
+            background-color: #2e2e4e;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        h2 {
             margin-bottom: 15px;
         }
 
-        #calendar {
-            padding: 10px;
-            background-color: #3c4048;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #fff;
+        .item {
             margin-bottom: 10px;
-        }
-
-        .calendar-body {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 10px;
-            color: #fff;
-        }
-
-        .calendar-body div {
-            text-align: center;
             padding: 10px;
-            background-color: #565a66;
+            background-color: #3a3a5c;
             border-radius: 5px;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s ease;
         }
 
-        .today {
-            background-color: #007bff;
+        .item:hover {
+            background-color: #4b4b7b;
+        }
+
+        .leave-approval table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .approve-btn {
+            background-color: #28a745;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .reject-btn {
+            background-color: #dc3545;
+            color: white;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-
-    <div class="dashboard-container">
-        <!-- Dashboard Header -->
-        <div class="dashboard-header">
-            <h2>Project Status Dashboard</h2>
-            <div class="filter-group">
-                <select>
-                    <option>Project Name: IT Career Map</option>
-                </select>
-                <select>
-                    <option>Project Phase: 5 selected</option>
-                </select>
+    <div class="dashboard">
+        <h1>ABC Dashboard</h1>
+        <div class="components">
+            <div class="component" id="myLeave">
+                <i class="icon">📝</i>
+                <span>My Leave</span>
+            </div>
+            <div class="component" id="markAttendance">
+                <i class="icon">📅</i>
+                <span>Mark Attendance</span>
+            </div>
+            <div class="component" id="leaveApproval">
+                <i class="icon">✅</i>
+                <span>Leave Approval</span>
+            </div>
+            <div class="component" id="calendar">
+                <i class="icon">📆</i>
+                <span>Calendar</span>
+            </div>
+            <div class="component" id="leavePolicy">
+                <i class="icon">📄</i>
+                <span>Leave Policy</span>
             </div>
         </div>
 
-        <!-- Dashboard Cards -->
-        <div class="dashboard-cards">
-            <!-- Project Cost Performance -->
-            <div class="card">
-                <h3>Project Cost Performance</h3>
-                <div class="stat">$93,332</div>
-                <div class="stat-change">$48,048 Actual Cost</div>
+        <div class="split-container">
+            <div class="half-container line-chart-container">
+                <canvas id="lineChart"></canvas>
             </div>
-
-            <!-- Project Performance -->
-            <div class="card">
-                <h3>Project Performance</h3>
-                <div class="stat">SPI: 0.89</div>
-                <div class="stat-change">CPI: 0.87</div>
-                <div class="stat-change">$46,666.00 PV</div>
-                <div class="stat-change">$41,579.40 EV</div>
+            <div class="half-container leave-approval">
+                <h2>Leave Approval</h2>
+                <table>
+                    <tr>
+                        <th>Employee</th>
+                        <th>Leave Type</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>Sick Leave</td>
+                        <td>Pending</td>
+                        <td>
+                            <button class="approve-btn">Approve</button>
+                            <button class="reject-btn">Reject</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>Vacation</td>
+                        <td>Pending</td>
+                        <td>
+                            <button class="approve-btn">Approve</button>
+                            <button class="reject-btn">Reject</button>
+                        </td>
+                    </tr>
+                </table>
             </div>
+        </div>
 
-            <!-- Time vs Project Phase -->
-            <div class="card">
-                <h3>Time Vs Project Phase</h3>
-                <canvas id="timeVsProjectPhaseChart"></canvas>
-            </div>
-
-            <!-- Calendar -->
-            <div id="calendar">
-                <div class="calendar-header">
-                    <h3>August 2024</h3>
-                    <div>
-                        <button class="btn btn-light btn-sm">&lt;</button>
-                        <button class="btn btn-light btn-sm">&gt;</button>
-                    </div>
+        <div class="flex-containers">
+            <div class="container">
+                <h2>Leave (Employees)</h2>
+                <div class="item">
+                    <i class="icon">📝</i>
+                    <span>My Leave Card</span>
                 </div>
-                <div class="calendar-body">
-                    <div>Sun</div>
-                    <div>Mon</div>
-                    <div>Tue</div>
-                    <div>Wed</div>
-                    <div>Thu</div>
-                    <div>Fri</div>
-                    <div>Sat</div>
-
-                    <div>1</div>
-                    <div>2</div>
-                    <div>3</div>
-                    <div>4</div>
-                    <div>5</div>
-                    <div>6</div>
-                    <div>7</div>
-                    <div>8</div>
-                    <div>9</div>
-                    <div>10</div>
-                    <div>11</div>
-                    <div>12</div>
-                    <div>13</div>
-                    <div>14</div>
-                    <div>15</div>
-                    <div>16</div>
-                    <div>17</div>
-                    <div>18</div>
-                    <div>19</div>
-                    <div>20</div>
-                    <div>21</div>
-                    <div>22</div>
-                    <div>23</div>
-                    <div>24</div>
-                    <div>25</div>
-                    <div>26</div>
-                    <div>27</div>
-                    <div>28</div>
-                    <div>29</div>
-                    <div class="today">30</div>
-                    <div>31</div>
+                <div class="item">
+                    <i class="icon">📤</i>
+                    <span>Applied Leaves</span>
+                </div>
+                <div class="item">
+                    <i class="icon">✅</i>
+                    <span>Approved Leaves</span>
+                </div>
+            </div>
+            <div class="container">
+                <h2>Leaves Approval</h2>
+                <div class="item">
+                    <i class="icon">✅</i>
+                    <span>Approved Leaves</span>
+                </div>
+                <div class="item">
+                    <i class="icon">⏳</i>
+                    <span>Pending Leaves</span>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Time vs Project Phase Chart
-        var ctx1 = document.getElementById('timeVsProjectPhaseChart').getContext('2d');
-        var timeVsProjectPhaseChart = new Chart(ctx1, {
-            type: 'horizontalBar',
+        const ctx = document.getElementById('lineChart').getContext('2d');
+
+        const chart = new Chart(ctx, {
+            type: 'line',
             data: {
-                labels: ['Closure Stage', 'Execution Stage', 'Monitor & Control', 'Project Initiation Stage', 'Project Planning Stage'],
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
                 datasets: [{
-                    label: 'Number of hours',
-                    data: [56, 164, 36, 40, 144],
-                    backgroundColor: '#3e95cd',
-                    borderColor: '#3e95cd',
-                    borderWidth: 1
+                    label: 'Leave Requests',
+                    data: [10, 20, 15, 25, 30, 40],
+                    borderColor: '#28a745',
+                    backgroundColor: 'rgba(40, 167, 69, 0.2)',
+                    fill: true,
+                    tension: 0.4
                 }]
             },
             options: {
                 scales: {
-                    xAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            fontColor: '#fff'
-                        },
-                        gridLines: {
-                            color: '#565a66'
-                        }
-                    }],
-                    yAxes: [{
-                        ticks: {
-                            fontColor: '#fff'
-                        },
-                        gridLines: {
-                            color: '#565a66'
-                        }
-                    }]
-                },
-                legend: {
-                    labels: {
-                        fontColor: '#fff'
+                    y: {
+                        beginAtZero: true
                     }
                 }
             }
         });
+
     </script>
 </body>
 
