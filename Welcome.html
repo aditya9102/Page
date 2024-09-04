@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 100vh;
+            background-color: #e0f7fa;
+        }
+
+        h1 {
+            color: #00796b;
+        }
+
+        .logout-icon {
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .logout-box {
+            display: none;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logout-box button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to the Dashboard</h1>
+    <div class="logout-container">
+        <span class="logout-icon" onclick="showLogout()">⚙</span>
+        <div class="logout-box" id="logoutBox">
+            <p>Are you sure you want to logout?</p>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        function showLogout() {
+            const logoutBox = document.getElementById('logoutBox');
+            logoutBox.style.display = logoutBox.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function logout() {
+            // Redirect to login or punch-in page
+            window.location.href = 'MarkAttendance.html';
+        }
+    </script>
+</body>
+
+</html>

@@ -4,116 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Punch In/Out System</title>
-    <!-- Bootstrap for layout -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Attendance Punch-In</title>
     <style>
-        /* General Body Styling */
         body {
-            background-color: #121212;
-            color: #ffffff;
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Heading Styling */
-        .punch-heading {
-            font-size: 36px;
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-        }
-
-        /* Thumb Sensor Styling */
-        .thumb-sensor-container {
+            font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 30px;
+            height: 100vh;
+            background-color: #f0f0f0;
         }
 
-        .thumb-sensor {
-            width: 100px;
-            height: 100px;
-            background-color: #2a2a2a;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            transition: transform 0.2s ease;
+        .container {
+            text-align: center;
         }
 
-        .thumb-icon {
-            font-size: 50px;
-            color: #ffffff;
+        .punch-btn {
+            background-color: red;
+            color: white;
+            padding: 20px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
-        .thumb-sensor:hover {
-            transform: scale(1.1);
-            background-color: #6200ee;
-        }
-
-        /* Button Styling */
-        .punch-buttons button {
-            margin: 10px;
-            padding: 15px 30px;
-            font-size: 18px;
-            border-radius: 8px;
-            transition: transform 0.2s ease;
-        }
-
-        .punch-buttons button:hover {
-            transform: scale(1.05);
-        }
-
-        /* Message Styling */
-        #message h3 {
-            color: #00ff00;
-            font-size: 24px;
-            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+        .punch-btn.punched-in {
+            background-color: green;
+            color: white;
         }
     </style>
 </head>
 
 <body>
-    <div class="container text-center mt-5">
-        <h1 class="punch-heading">Punch In/Out System</h1>
-
-        <!-- Simulated Thumb Sensor -->
-        <div class="thumb-sensor-container">
-            <div class="thumb-sensor">
-                <i class="bi bi-fingerprint thumb-icon"></i>
-            </div>
-        </div>
-
-        <!-- Punch In and Out Buttons -->
-        <div class="punch-buttons mt-4">
-            <button id="punchInBtn" class="btn btn-primary">Punch In</button>
-            <button id="punchOutBtn" class="btn btn-danger">Punch Out</button>
-        </div>
-
-        <!-- Display Time and Messages -->
-        <div id="message" class="mt-4"></div>
+    <div class="container">
+        <h1>Attendance Punch-In</h1>
+        <button class="punch-btn" id="punchBtn" onclick="punchIn()">Punch In</button>
     </div>
 
-    <!-- Bootstrap and Icons -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
-
     <script>
-        // Handle Punch In and Punch Out
-        document.getElementById('punchInBtn').addEventListener('click', function () {
-            const currentTime = new Date();
-            const formattedTime = currentTime.toLocaleTimeString();
-            document.getElementById('message').innerHTML = `<h3>Punched In at ${formattedTime}</h3>`;
-        });
+        function punchIn() {
+            const punchBtn = document.getElementById('punchBtn');
+            punchBtn.classList.add('punched-in');
+            punchBtn.textContent = 'Punched In ✓';
 
-        document.getElementById('punchOutBtn').addEventListener('click', function () {
-            const currentTime = new Date();
-            const formattedTime = currentTime.toLocaleTimeString();
-            document.getElementById('message').innerHTML = `<h3>Punched Out at ${formattedTime}</h3>`;
-        });
+            // Redirect to welcome page after 1 second
+            setTimeout(function () {
+                window.location.href = 'welcome.html';
+            }, 1000);
+        }
     </script>
 </body>
 

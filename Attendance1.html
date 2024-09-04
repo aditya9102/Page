@@ -10,59 +10,128 @@
         rel="stylesheet">
     <style>
         body {
-            background-color: #f4f7fa;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
         }
 
-        .attendance-box {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 30px;
-            max-width: 400px;
-            margin: auto;
-        }
-
-        .thumb-container {
-            border-radius: 50%;
+        .dashboard {
             padding: 20px;
-            display: inline-block;
-            transition: transform 0.3s ease;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .thumb-container:hover {
-            transform: scale(1.1);
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
         }
 
-        .thumb-icon {
-            width: 100px;
-            cursor: pointer;
+        .components {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
         }
 
-
-
-        .status-message {
-            margin-top: 20px;
-            display: none;
-            font-weight: bold;
-        }
-
-        .punch-out-icon {
-            font-size: 30px;
-            padding-right: 10px;
-            color: #dc3545;
-            cursor: pointer;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .punch-out-icon:hover {
-            transform: scale(1.1);
-        }
-
-        .modal-content {
+        .component {
+            background-color: #e0e0e0;
+            padding: 20px;
             border-radius: 10px;
+            text-align: center;
+            flex: 1;
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .component:hover {
+            transform: translateY(-10px);
+        }
+
+        .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+            display: block;
+            color: #2c3e50;
+        }
+
+        .split-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .half-container {
+            width: 48%;
+            background-color: #e0e0e0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .flex-containers {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            background-color: #e0e0e0;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #d0d0d0;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .item:hover {
+            background-color: #b0b0b0;
+        }
+
+        .leave-approval table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #aaa;
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .approve-btn {
+            background-color: #28a745;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .reject-btn {
+            background-color: #dc3545;
+            color: white;
         }
     </style>
 </head>
