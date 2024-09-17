@@ -4,227 +4,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Attendance</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css"
-        rel="stylesheet">
+    <title>Mark Attendance</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
+            background-color: #f8f9fa;
         }
 
-        .dashboard {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #2c3e50;
-        }
-
-        .components {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-        }
-
-        .component {
-            background-color: #e0e0e0;
+        .attendance-box {
+            width: 25%;
+            background-color: white;
             padding: 20px;
             border-radius: 10px;
-            text-align: center;
-            flex: 1;
-            margin: 0 10px;
-            transition: transform 0.3s ease;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
-        .component:hover {
-            transform: translateY(-10px);
+        .logo {
+            width: 80px;
+            height: 80px;
         }
 
-        .icon {
-            font-size: 2em;
-            margin-bottom: 10px;
-            display: block;
-            color: #2c3e50;
+        .profile-pic-container {
+            margin-top: -30px;
         }
 
-        .split-container {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #007bff;
         }
 
-        .half-container {
-            width: 48%;
-            background-color: #e0e0e0;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .flex-containers {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .container {
-            background-color: #e0e0e0;
-            padding: 20px;
-            border-radius: 10px;
-            flex: 1;
-            margin: 0 10px;
-        }
-
-        h2 {
-            margin-bottom: 15px;
-            color: #2c3e50;
-        }
-
-        .item {
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: #d0d0d0;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .item:hover {
-            background-color: #b0b0b0;
-        }
-
-        .leave-approval table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        th,
-        td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #aaa;
-            color: #333;
-        }
-
-        button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
+        .sensor {
+            width: 80px;
             cursor: pointer;
         }
 
-        .approve-btn {
-            background-color: #28a745;
-            color: white;
-            margin-right: 10px;
+        /* Tooltip container */
+        .tooltip {
+            position: relative;
+            display: inline-block;
         }
 
-        .reject-btn {
-            background-color: #dc3545;
-            color: white;
+        /* Tooltip text */
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            /* Position above the sensor */
+            left: 50%;
+            margin-left: -60px;
+
+            /* Add an arrow */
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: black transparent transparent transparent;
+        }
+
+        /* Show the tooltip on hover */
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .status-message {
+            font-size: 1.2em;
+            color: green;
+            display: none;
+        }
+
+        .time-log {
+            font-size: 1em;
+            color: #343a40;
+            display: none;
         }
     </style>
 </head>
 
 <body>
-    <div class="container text-center vh-100 d-flex align-items-center justify-content-center">
-        <div class="attendance-box rounded shadow position-relative">
-            <div class="thumb-container" id="thumbContainer">
-                <img src="/images/thumb scan.jpg" alt="Thumb Icon" id="thumb" class="thumb-icon">
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="attendance-box text-center">
+            <img src="images1/hgs-logo.png" class="logo mb-3" alt="Logo">
+            <div class="profile-pic-container">
+                <img id="profile-pic" src="/images1/image1.png" class="profile-pic" alt="Profile Picture">
             </div>
-
-            <div class="status-message text-success" id="statusMessage">
-                <i class="bi bi-check-circle"></i>
-                <p id="statusText"></p>
+            <div class="sensor-container mt-3 tooltip">
+                <img id="sensor" src="https://via.placeholder.com/100" class="sensor" alt="Thumb Sensor">
+                <span class="tooltiptext" id="tooltip-message">Punch In</span>
             </div>
-
-            <i class="bi bi-door-open-fill punch-out-icon" id="punchOutIcon" title="Punch Out"></i>
+            <div id="status-message" class="status-message mt-3"></div>
+            <div id="time-log" class="time-log mt-3"></div>
         </div>
     </div>
 
-    <!-- Punch Out Modal -->
-    <div class="modal fade" id="punchOutModal" tabindex="-1" aria-labelledby="punchOutModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="punchOutModalLabel">Punch Out</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <p>Are you sure you want to punch out?</p>
-                    <button id="confirmPunchOut" class="btn btn-danger">Punch Out</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <script>let punchedIn = false;
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        let hasPunchedIn = false; // Track if the user has punched in
+        document.getElementById('sensor').addEventListener('mouseenter', function () {
+            const tooltipMessage = document.getElementById('tooltip-message');
 
-        // Show Punch In success on image click
-        document.getElementById('thumbContainer').addEventListener('click', function () {
-            const currentDateTime = new Date().toLocaleString();
-
-            Swal.fire({
-                title: 'Punch In Successful!',
-                text: `Date & Time: ${currentDateTime}`,
-                icon: 'success',
-                confirmButtonText: 'OK'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    hasPunchedIn = true; // Set the punch-in status to true
-                    document.getElementById('statusMessage').style.display = 'block';
-                    document.getElementById('statusText').innerText = `Punched In at: ${currentDateTime}`;
-                }
-            });
-        });
-
-        // Show modal on Punch Out icon click
-        document.getElementById('punchOutIcon').addEventListener('click', function () {
-            if (!hasPunchedIn) {
-                // Show warning if user tries to punch out without punching in
-                Swal.fire({
-                    title: 'Punch In Required!',
-                    text: 'Please punch in before punching out.',
-                    icon: 'warning',
-                    confirmButtonText: 'OK'
-                });
+            if (!punchedIn) {
+                tooltipMessage.innerHTML = "Punch In";
             } else {
-                const punchOutModal = new bootstrap.Modal(document.getElementById('punchOutModal'));
-                punchOutModal.show();
+                tooltipMessage.innerHTML = "Punch Out";
             }
         });
 
-        // Handle Punch Out confirmation
-        document.getElementById('confirmPunchOut').addEventListener('click', function () {
-            const currentDateTime = new Date().toLocaleString();
-            const punchOutModal = bootstrap.Modal.getInstance(document.getElementById('punchOutModal'));
-            punchOutModal.hide();
+        document.getElementById('sensor').addEventListener('click', function () {
+            const sensor = document.getElementById('sensor');
+            const message = document.getElementById('status-message');
+            const timeLog = document.getElementById('time-log');
+            const tooltipMessage = document.getElementById('tooltip-message');
 
-            Swal.fire({
-                title: 'Punch Out Successful!',
-                text: `Date & Time: ${currentDateTime}`,
-                icon: 'success',
-                confirmButtonText: 'OK'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('statusMessage').style.display = 'block';
-                    document.getElementById('statusText').innerText = `Punched Out at: ${currentDateTime}`;
-                    hasPunchedIn = false; // Reset punch-in status after punch out
-                }
-            });
+            if (!punchedIn) {
+                // On Punch In
+                sensor.src = "https://via.placeholder.com/100?text=Tick"; // Image with tick mark
+                message.innerHTML = "You have successfully punched in";
+                punchedIn = true;
+                timeLog.innerHTML = `Punch In Time: ${new Date().toLocaleTimeString()}`;
+                timeLog.style.display = 'block';
+                tooltipMessage.innerHTML = "Punch Out";
+            } else {
+                // On Punch Out
+                sensor.src = "https://via.placeholder.com/100?text=Red+Sensor"; // Red sensor image
+                message.innerHTML = "You have successfully punched out";
+                punchedIn = false;
+                timeLog.innerHTML += `<br>Punch Out Time: ${new Date().toLocaleTimeString()}`;
+                tooltipMessage.innerHTML = "Punch In";
+            }
         });
     </script>
 </body>

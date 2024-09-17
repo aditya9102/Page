@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .carousel-item {
+            height: 80vh;
+            background-color: #333;
+        }
+
+        .carousel-item img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            padding: 10px;
+        }
+
+        .carousel-control-prev-icon::before,
+        .carousel-control-next-icon::before {
+            font-size: 30px;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item {
+                height: 50vh;
+            }
+
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .carousel-control-prev-icon::before,
+            .carousel-control-next-icon::before {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div id="imageSlider" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="7" aria-label="Slide 8"></button>
+                <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="8" aria-label="Slide 9"></button>
+                <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="9" aria-label="Slide 10"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/images/DALL·E 2024-08-06 11.29.38 - A vibrant and creative scene showcasing enthusiastic teamwork and innovation. On the left side, depict a group of diverse people collaborating on a pr.webp"
+                        class="d-block w-100" alt="Image 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/DALL·E 2024-08-06 11.30.22 - A vibrant and creative scene showcasing enthusiastic teamwork and innovation. On the left side, depict a group of diverse people collaborating on a pr.webp"
+                        class="d-block w-100" alt="Image 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/DALL·E 2024-08-06 11.43.54 - A vibrant and enthusiastic motivational poster. The background features a sunrise over a serene landscape, symbolizing new beginnings and positivity. .webp"
+                        class="d-block w-100" alt="Image 3 (Optional)">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/DALL·E 2024-08-06 11.59.35 - A vibrant scene depicting growth and development. A small plant breaking through the soil and growing towards the sunlight, symbolizing new beginnings.webp"
+                        class="d-block w-100" alt="Image 4 (Optional)">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/DALL·E 2024-08-06 11.59.44 - A dynamic image representing growth and achievement. In the foreground, a young tree with strong roots and lush green leaves, symbolizing steady growt.webp"
+                        class="d-block w-100" alt="Image 5 (Optional)">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/DALL·E 2024-08-06 12.21.12 - A vibrant scene depicting growth and persistence with motivational elements. On the left, a tree growing from a small seedling into a tall, flourishin.webp"
+                        class="d-block w-100" alt="Image 6 (Optional)">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/DALL·E 2024-08-21 16.12.50 - A creative design for an office leave notice with the text 'My Leave' prominently displayed. The design features soft, calming colors such as light bl.jpg"
+                        class="d-block w-100" alt="Image 7 (Optional)">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/DALL·E 2024-08-21 16.14.14 - A creative design for a company attendance theme with the text 'My Attendance' prominently displayed. The design features a professional yet engaging .jpg"
+                        class="d-block w-100" alt="Image 8 (Optional)">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/DALL·E 2024-08-21 16.15.00 - A creative design for a 'Leave Approval' notice with a focus on professionalism and simplicity. The design should feature a clean and modern look with.jpg"
+                        class="d-block w-100" alt="Image 9 (Optional)">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/DALL·E 2024-08-21 16.17.02 - A creative and visually engaging design for 'Leave Policy,' with a modern and professional look. The text 'Leave Policy' should be clearly displayed. .jpg"
+                        class="d-block w-100" alt="Image 10 (Optional)">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#imageSlider" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#imageSlider" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let imageSlider = new bootstrap.Carousel('#imageSlider', {
+            interval: 1000,
+            pause: 'hover'
+        });
+    </script>
+</body>
+
+</html>
